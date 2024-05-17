@@ -38,10 +38,11 @@ return  new ResponseEntity<>("success", HttpStatus.CREATED);
 
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(Integer id) {
         Optional<Quiz> quiz =quizData.findById(id);
-        List<Question>questionsFromDB =quiz.get().getQuestions();
+        List<Question> questionsFromDB = quiz.get().getQuestions();
         List<QuestionWrapper>questionForUser = new ArrayList<>();
 for (Question q :questionsFromDB)     {
     QuestionWrapper qw =new QuestionWrapper(q.getId(),q.getTitle(),q.getOption1(),q.getOption2(),q.getOption3(),q.getOption4());
+    questionForUser.add(qw);
 }
 return  new ResponseEntity<>(questionForUser,HttpStatus.OK);
     }
